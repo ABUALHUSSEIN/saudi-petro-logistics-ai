@@ -1,0 +1,17 @@
+# الأساسيات
+streamlit
+crewai
+langchain-google-genai
+python-dotenv
+
+# MCP و FastMCP
+fastmcp
+
+# الأدوات (Tools)
+tavily-python
+pandas
+pypdf
+langchain-community
+
+# محرك البحث والذكاء الاصطناعي
+google-generativeai
