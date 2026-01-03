@@ -26,9 +26,10 @@ SPLA is a sophisticated **Agentic AI** application built for the Saudi oil and g
 3.Tool (Agent - CrewAI): The "Logistics Strategist" that reasons through tasks. It uses Llama 3.3 for deep thinking.
 
 4.Tools and Workflows:
- *CSV Tool: Provides the RAG (Retrieval-Augmented Generation) capability using historical shipping logs.
 
- *Tavily Search: Provides real-time "Online Search" capability to fetch current oil prices.
+ - **CSV Tool: Provides the RAG (Retrieval-Augmented Generation) capability using historical shipping logs.
+
+ - **Tavily Search: Provides real-time "Online Search" capability to fetch current oil prices.
 
 ## 🚀 How to Run
 1. **Clone the repository:**
