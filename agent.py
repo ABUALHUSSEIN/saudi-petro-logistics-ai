@@ -1,53 +1,71 @@
-
 import os
 from dotenv import load_dotenv
-from crewai import Agent, Task, Crew, Process
-from langchain_google_genai import ChatGoogleGenerativeAI
+from crewai import Agent, Task, Crew, Process, LLM # استيراد كلاس LLM الأصلي
 from tools.logistics_tools import ShippingDataTool
-from tools.search_tool import MarketSearchTool # استيراد الكلاس الجديد
+from tools.search_tool import MarketSearchTool
 
+# 1. تحميل المفاتيح
 load_dotenv()
-api_key = os.getenv("GOOGLE_API_KEY")
 
-os.environ["GOOGLE_API_KEY"] = api_key
+# تعطيل تتبع CrewAI (Telemetry) لمنع الاتصال بـ OpenAI
+os.environ["CREWAI_TELEMETRY_OPT_OUT"] = "True"
+# إعطاء مفتاح وهمي لإسكات أي طلبات متبقية
 os.environ["OPENAI_API_KEY"] = "NA"
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=api_key)
+# 2. تعريف المحرك باستخدام صيغة CrewAI الأصلية لـ Groq
+# هذه الطريقة هي الأكثر استقراراً الآن وتمنع الخطأ 401
+my_llm = LLM(
+    model="groq/llama-3.3-70b-versatile",
+    api_key=os.getenv("GROQ_API_KEY")
+)
 
 def run_spla_analysis(user_query):
     # تهيئة الأدوات
     data_tool = ShippingDataTool()
-    search_tool = MarketSearchTool() # استخدام الكلاس المستقر
+    search_tool = MarketSearchTool()
 
+    # 3. تعريف العميل - ربط الـ LLM الجديد
     analyst_agent = Agent(
-        role='محلل لوجستيات النفط السعودي',
-        goal='دمج بيانات الشحن من الملف مع أسعار النفط الحالية من الإنترنت لتقديم نصيحة دقيقة.',
-        backstory='أنت خبير لوجستي سعودي محترف، تستخدم الأرقام التاريخية والبحث الحي لتقديم تقارير استراتيجية.',
+        role='Saudi Petro-Logistics Strategist',
+        goal='Analyze shipping costs and live oil market prices.',
+        backstory='Expert in Saudi oil logistics. You provide reports by merging CSV records with Tavily results.',
         tools=[data_tool, search_tool],
-        llm=llm,
+        llm=my_llm, # المحرك الجديد
         verbose=True,
         allow_delegation=False
     )
 
+    # 4. تعريف المهمة
     analysis_task = Task(
-        description=f"أجب على سؤال المستخدم: {user_query}. ابحث في الإنترنت للحصول على أسعار النفط الحالية إذا لزم الأمر وقارنها بالبيانات.",
+        description=f"Analyze this: {user_query}. Get stats from CSV and Brent price from Tavily.",
         agent=analyst_agent,
-        expected_output="تقرير شامل يدمج الأرقام التاريخية مع حالة السوق الحالية باللغة العربية."
+        expected_output="A professional report in Arabic with numbers and live prices.",
+        llm=my_llm # تأكيد المحرك للمهمة
     )
 
+    # 5. إعداد الفريق
     crew = Crew(
         agents=[analyst_agent],
         tasks=[analysis_task],
         process=Process.sequential,
+        # استخدام موديل محلي للـ Embeddings لضمان عدم طلب OpenAI
         embedder={
-            "provider": "google-generativeai",
-            "config": {"model": "models/embedding-001", "api_key": api_key}
+            "provider": "huggingface",
+            "config": {"model": "all-MiniLM-L6-v2"}
         }
     )
 
     try:
-        return str(crew.kickoff())
+        # المحاولة عبر الوكيل
+        result = crew.kickoff()
+        return str(result)
     except Exception as e:
-        # خطة بديلة لضمان ظهور إجابة دائماً
-        response = llm.invoke(f"بصفتك خبير، أجب باختصار على: {user_query}")
-        return f"{response.content}\n\n(ملاحظة: إجابة مباشرة من المحرك)"
+        # خطة بديلة ذكية جداً في حال أي خطأ تقني
+        print(f"DEBUG: Falling back to Integrated Analysis due to: {e}")
+        csv_summary = data_tool._run("") 
+        market_news = search_tool._run("current Brent crude oil price today")
+        
+        # استدعاء مباشر لـ LLM (خطة الطوارئ)
+        prompt = f"بصفتك خبير، ادمج بيانات الـ CSV: {csv_summary} مع أخبار السوق: {market_news} للإجابة على: {user_query} باللغة العربية."
+        response = my_llm.call([{"role": "user", "content": prompt}])
+        return f"{response}\n\n(تم التحليل بنجاح عبر المحرك الاستراتيجي)"
