@@ -30,5 +30,14 @@ tools/: Custom tools for CSV analysis and web search.
 data/: Sample historical shipping data.
 
 SUBMISSION.md: Detailed project documentation for the course final.
+
+## 📸 Highlights
+
+**AI-Agent:**  
+![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/spla-agentic-ai-architecture-pattern1.png)  
+
+## 🎥 Project Demo
+[Watch the video](https://youtu.be/O4SuxHODtqQ?si=8KIrZurgKjZDzTTA)
+ 
    
    
