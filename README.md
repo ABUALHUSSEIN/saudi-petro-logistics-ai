@@ -52,7 +52,7 @@ SUBMISSION.md: Detailed project documentation for the course final.
 
 
 ## 🎥 Project Demo
-[Watch the video](https://youtu.be/O4SuxHODtqQ?si=8KIrZurgKjZDzTTA)
+[Watch the video](https://youtu.be/b-H1wXbUDgs)
  
    
    
