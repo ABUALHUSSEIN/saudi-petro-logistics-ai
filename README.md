@@ -15,7 +15,9 @@ SPLA is a sophisticated **Agentic AI** application built for the Saudi oil and g
 - **External API:** Tavily Search for live market data.
 - 
   **spla-agentic-ai-architecture-pattern1**  
-![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/spla-agentic-ai-architecture-pattern1.png)  
+![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/spla-agentic-ai-architecture-pattern1.png)
+
+![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/SPLA.png)  
 
 ### Technical Explanation
 
