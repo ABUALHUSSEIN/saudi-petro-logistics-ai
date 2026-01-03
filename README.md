@@ -17,8 +17,6 @@ SPLA is a sophisticated **Agentic AI** application built for the Saudi oil and g
   **spla-agentic-ai-architecture-pattern1**  
 ![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/spla-agentic-ai-architecture-pattern1.png)
 
-![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/SPLA.png)  
-
 ### Technical Explanation
 
 1. Front-End (Streamlit): The user interface where queries are entered and strategic reports are displayed.
@@ -32,6 +30,8 @@ SPLA is a sophisticated **Agentic AI** application built for the Saudi oil and g
  - **CSV Tool:** Provides the RAG (Retrieval-Augmented Generation) capability using historical shipping logs.
 
  - **Tavily Search:**  Provides real-time "Online Search" capability to fetch current oil prices.
+
+   ![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/SPLA.png)  
 
 ## 🚀 How to Run
 1. **Clone the repository:**
