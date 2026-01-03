@@ -1,17 +1,19 @@
-# الأساسيات
+# UI & Dashboard
 streamlit
-crewai
-langchain-google-genai
-python-dotenv
 
-# MCP و FastMCP
+# Agentic Framework & Tools
+crewai
+crewai-tools
+tavily-python
 fastmcp
 
-# الأدوات (Tools)
-tavily-python
+# LLM Providers
+langchain-groq
+python-dotenv
+
+# Data Processing
 pandas
 pypdf
-langchain-community
 
-# محرك البحث والذكاء الاصطناعي
-google-generativeai
+# Common Core
+langchain-community
