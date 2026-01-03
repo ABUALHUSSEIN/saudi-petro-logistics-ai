@@ -13,6 +13,21 @@ SPLA is a sophisticated **Agentic AI** application built for the Saudi oil and g
 - **Orchestration:** CrewAI Framework.
 - **Middleware:** FastMCP (wrapping logistical tools).
 - **External API:** Tavily Search for live market data.
+- 
+  **spla-agentic-ai-architecture-pattern1**  
+![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/spla-agentic-ai-architecture-pattern1.png)  
+
+### Technical Explanation
+
+1.Front-End (Streamlit): The user interface where queries are entered and strategic reports are displayed.
+
+2.MCP Server (FastMCP): Acts as the standard communication bridge that wraps the AI agent as a callable tool.
+
+3.Tool (Agent - CrewAI): The "Logistics Strategist" that reasons through tasks. It uses Llama 3.3 for deep thinking.
+
+4.Tools and Workflows:
+CSV Tool: Provides the RAG (Retrieval-Augmented Generation) capability using historical shipping logs.
+Tavily Search: Provides real-time "Online Search" capability to fetch current oil prices.
 
 ## 🚀 How to Run
 1. **Clone the repository:**
@@ -31,10 +46,6 @@ data/: Sample historical shipping data.
 
 SUBMISSION.md: Detailed project documentation for the course final.
 
-## 📸 Highlights
-
-**AI-Agent:**  
-![AI-Agent](https://raw.githubusercontent.com/ABUALHUSSEIN/saudi-petro-logistics-ai/refs/heads/main/spla-agentic-ai-architecture-pattern1.png)  
 
 ## 🎥 Project Demo
 [Watch the video](https://youtu.be/O4SuxHODtqQ?si=8KIrZurgKjZDzTTA)
