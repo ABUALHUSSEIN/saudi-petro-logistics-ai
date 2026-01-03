@@ -1,8 +1,4 @@
 # Final Project Submission: Saudi Petro-Logistics AI (SPLA)
-
-## Project Overview
-This document outlines the development, architecture, and business value of the SPLA application as part of the Agentic AI course final project.
-...
 ## 1. Name and Description
 **Project Name:** Saudi Petro-Logistics AI (SPLA)  
 **Description:** SPLA is an "Agentic AI" application designed to revolutionize logistics in the Saudi oil sector. It follows **Pattern 1** by placing an intelligent Agent (Logistics Strategist) in front of a RAG system (CSV data) and a real-time Search engine (Tavily). The app helps users analyze historical shipping costs while staying updated with global oil market trends.
